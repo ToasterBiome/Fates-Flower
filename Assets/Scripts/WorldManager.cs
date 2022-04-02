@@ -5,6 +5,9 @@ using UnityEngine;
 public class WorldManager : MonoBehaviour
 {
     public static WorldManager instance;
+
+    [SerializeField]
+    Transform player;
     void Awake()
     {
         if (instance == null)
@@ -22,7 +25,7 @@ public class WorldManager : MonoBehaviour
 
     void Update()
     {
-
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Mathf.Clamp(player.transform.position.y, -3, 3), Camera.main.transform.position.z);
     }
 
 
