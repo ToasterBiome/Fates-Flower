@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8418758150630101390
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 4
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -20,11 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Platform_Material
-  m_Shader: {fileID: 4800000, guid: 6c046203321edf34fb092959a05e5b4a, type: 3}
-  m_ShaderKeywords: _MK_ARTISTIC_PROJECTION_SCREEN_SPACE _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
-    _MK_LIGHT_BANDED _MK_OUTLINE_HULL_CLIP _MK_RECEIVE_SHADOWS _MK_SPECULAR_ISOTROPIC
-    _MK_WRAPPED_DIFFUSE _RECEIVESHADOWS_ON _WRAPPEDLIGHTING_ON
+  m_Name: Banner
+  m_Shader: {fileID: 4800000, guid: 7633a2fd8a3bed44791c9e952ff86e5d, type: 3}
+  m_ShaderKeywords: _FRESNELHIGHLIGHTS_ON _MK_ARTISTIC_PROJECTION_SCREEN_SPACE _MK_DETAIL_BLEND_MIX
+    _MK_ENVIRONMENT_REFLECTIONS_AMBIENT _MK_FRESNEL_HIGHLIGHTS _MK_LIGHT_BANDED _MK_OUTLINE_HULL_CLIP
+    _MK_OUTLINE_NOISE _MK_RECEIVE_SHADOWS _MK_SPECULAR_ISOTROPIC _MK_WRAPPED_DIFFUSE
+    _RECEIVESHADOWS_ON _WRAPPEDLIGHTING_ON
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -49,6 +37,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -80,6 +72,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GoochBrightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GoochDarkMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _GoochRamp:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,7 +92,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HeightMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _IridescenceRamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightTransmissionRamp:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -101,6 +109,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -124,6 +136,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RoughnessMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SketchMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -137,6 +153,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularRamp:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ThicknessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -166,6 +186,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaClipping: 0
     - _AlphaCutoff: 0.5
+    - _Anisotropy: 0
     - _Artistic: 0
     - _ArtisticFrequency: 1
     - _ArtisticProjection: 1
@@ -181,7 +202,11 @@ Material:
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
+    - _DetailBlend: 0
+    - _DetailMix: 0.5
+    - _DetailNormalMapIntensity: 1
     - _DetailNormalMapScale: 1
+    - _Diffuse: 0
     - _DiffuseSmoothness: 0
     - _DiffuseThresholdOffset: 0.25
     - _Dissolve: 0
@@ -193,6 +218,7 @@ Material:
     - _DrawnMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _FresnelHighlights: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
@@ -206,20 +232,26 @@ Material:
     - _IridescenceThresholdOffset: 0
     - _Light: 2
     - _LightBands: 4
-    - _LightBandsScale: 0.654
-    - _LightThreshold: 0.583
+    - _LightBandsScale: 0.088
+    - _LightThreshold: 0.424
+    - _LightTransmission: 0
+    - _LightTransmissionDistortion: 0.25
+    - _LightTransmissionIntensity: 1
+    - _LightTransmissionSmoothness: 0.5
+    - _LightTransmissionThresholdOffset: 0.25
     - _Metallic: 0
     - _Mode: 0
     - _NormalMapIntensity: 1
+    - _OcclusionMapIntensity: 1
     - _OcclusionStrength: 1
     - _OptionsTab: 1
     - _Outline: 3
     - _OutlineData: 0
     - _OutlineFadeMax: 2
     - _OutlineFadeMin: 0.25
-    - _OutlineNoise: 0
-    - _OutlineSize: 5
-    - _OutlineTab: 0
+    - _OutlineNoise: 0.136
+    - _OutlineSize: 17.2
+    - _OutlineTab: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -229,6 +261,7 @@ Material:
     - _RimSize: 1
     - _RimSmoothness: 0.5
     - _RimThresholdOffset: 0.25
+    - _Roughness: 0.5
     - _Saturation: 1
     - _SketchMapScale: 1
     - _Smoothness: 0
@@ -254,24 +287,40 @@ Material:
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
+    - _Workflow: 0
     - _WorkflowMode: 1
     - _WrappedLighting: 1
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.234, g: 0.13713059, b: 0.077687986, a: 1}
-    - _BaseColor: {r: 0.35293502, g: 0.18185872, b: 0.076186724, a: 1}
-    - _Color: {r: 0.10223806, g: 0.027731206, b: 0.006716297, a: 1}
+    - _AlbedoColor: {r: 0.4627451, g: 0.07496468, b: 0.1518221, a: 1}
+    - _BaseColor: {r: 0.7563318, g: 0.03283304, b: 0.17682403, a: 1}
+    - _Color: {r: 0.5324399, g: 0.002541257, b: 0.026337499, a: 1}
+    - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GoochBrightColor: {r: 1, g: 0, b: 0, a: 1}
     - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _LightTransmissionColor: {r: 1, g: 0.65, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecularColor: {r: 0.19999993, g: 0.19999993, b: 0.19999993, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &4258477207988647880
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
