@@ -218,8 +218,8 @@ Material:
     - _OutlineFadeMax: 2
     - _OutlineFadeMin: 0.25
     - _OutlineNoise: 0
-    - _OutlineSize: 5
-    - _OutlineTab: 0
+    - _OutlineSize: 22.01
+    - _OutlineTab: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -259,7 +259,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.7326143, g: 0.7326143, b: 0.7326143, a: 1}
+    - _AlbedoColor: {r: 0.5871902, g: 0.5470986, b: 0.6415094, a: 1}
     - _BaseColor: {r: 0.7326143, g: 0.7326143, b: 0.7326143, a: 1}
     - _Color: {r: 0.49584594, g: 0.49584594, b: 0.49584594, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
