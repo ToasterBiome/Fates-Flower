@@ -8,6 +8,7 @@ public class WorldManager : MonoBehaviour
 
     [SerializeField]
     Transform player;
+    public GameObject currentCamera;
     void Awake()
     {
         if (instance == null)

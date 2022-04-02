@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] bool isGrounded = false;
 
+    GameObject platform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,10 @@ public class PlayerController : MonoBehaviour
             health -= Time.deltaTime;
             OnHealthChanged?.Invoke(health);
         }
+        if (Input.GetKeyDown(KeyCode.S) && platform != null)
+        {
+            StartCoroutine(DisablePlatform());
+        }
     }
 
     bool IsGrounded()
@@ -60,9 +66,33 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
             return false;
         }
-        Debug.Log(raycast.collider.name);
+        //Debug.Log(raycast.collider.name);
         isGrounded = true;
         return true;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            platform = collision.gameObject;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            platform = null;
+        }
+    }
+
+    IEnumerator DisablePlatform()
+    {
+        BoxCollider2D platformCollider = platform.GetComponent<BoxCollider2D>();
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider);
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, true);
     }
 
 
