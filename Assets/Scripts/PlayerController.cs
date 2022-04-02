@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    float health = 10f * 60f; //10 minutes seconds of HP
+
+    public static Action<float> OnHealthChanged;
     CharacterController controller;
 
     [SerializeField]
@@ -32,6 +37,13 @@ public class PlayerController : MonoBehaviour
         if (velocity.x != 0)
         {
             sprite.flipX = Mathf.Sign(velocity.x) == 1 ? false : true;
+        }
+
+        //health time
+        if (health > 0)
+        {
+            health -= Time.deltaTime;
+            OnHealthChanged?.Invoke(health);
         }
     }
 
