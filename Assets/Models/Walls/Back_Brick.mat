@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Brick_Material
+  m_Name: Back_Brick
   m_Shader: {fileID: 4800000, guid: 6c046203321edf34fb092959a05e5b4a, type: 3}
   m_ShaderKeywords: _MK_ARTISTIC_PROJECTION_SCREEN_SPACE _MK_ENVIRONMENT_REFLECTIONS_AMBIENT
-    _MK_LIGHT_BANDED _MK_OUTLINE_HULL_CLIP _MK_OUTLINE_NOISE _MK_RECEIVE_SHADOWS
-    _MK_SPECULAR_ISOTROPIC _MK_WRAPPED_DIFFUSE _RECEIVESHADOWS_ON _WRAPPEDLIGHTING_ON
+    _MK_LIGHT_BANDED _MK_OUTLINE_HULL_CLIP _MK_RECEIVE_SHADOWS _MK_SPECULAR_ISOTROPIC
+    _MK_WRAPPED_DIFFUSE _RECEIVESHADOWS_ON _WRAPPEDLIGHTING_ON
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -180,9 +180,9 @@ Material:
     - _DrawnMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 1
+    - _GlossMapScale: 0
     - _Glossiness: 0
-    - _GlossyReflections: 1
+    - _GlossyReflections: 0
     - _GoochRampIntensity: 0.5
     - _HatchingMapScale: 1
     - _Initialized: 1
@@ -193,10 +193,9 @@ Material:
     - _IridescenceThresholdOffset: 0
     - _Light: 2
     - _LightBands: 4
-    - _LightBandsScale: 0.614
-    - _LightThreshold: 0.681
+    - _LightBandsScale: 0.471
+    - _LightThreshold: 0.653
     - _Metallic: 0
-    - _Mode: 0
     - _NormalMapIntensity: 1
     - _OcclusionStrength: 1
     - _OptionsTab: 1
@@ -204,10 +203,10 @@ Material:
     - _OutlineData: 0
     - _OutlineFadeMax: 2
     - _OutlineFadeMin: 0.25
-    - _OutlineNoise: 0.289
-    - _OutlineSize: 26.8
-    - _OutlineTab: 1
-    - _Parallax: 0.02
+    - _OutlineNoise: 0
+    - _OutlineSize: 5
+    - _OutlineTab: 0
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RenderFace: 2
@@ -237,7 +236,6 @@ Material:
     - _StylizeTab: 1
     - _Surface: 0
     - _ThresholdMapScale: 1
-    - _UVSec: 0
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
@@ -246,13 +244,13 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.25602978, g: 0.24770379, b: 0.26415092, a: 1}
-    - _BaseColor: {r: 0.5240579, g: 0.5240579, b: 0.5240579, a: 1}
-    - _Color: {r: 0.23698837, g: 0.23698837, b: 0.23698837, a: 1}
+    - _AlbedoColor: {r: 0.21715915, g: 0.21448916, b: 0.23584908, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GoochBrightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GoochDarkColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+    - _GoochDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _IridescenceColor: {r: 1, g: 1, b: 1, a: 0.5}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
@@ -262,7 +260,7 @@ Material:
     - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3743676170152638913
+--- !u!114 &6987925029533969476
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
