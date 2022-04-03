@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     [SerializeField]
     float health = 10f * 60f; //10 minutes seconds of HP
@@ -46,12 +46,7 @@ public class PlayerController : MonoBehaviour
             sprite.flipX = Mathf.Sign(velocity.x) == 1 ? false : true;
         }
 
-        //health time
-        if (health > 0)
-        {
-            health -= Time.deltaTime;
-            OnHealthChanged?.Invoke(health);
-        }
+        Damage(Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.S) && platform != null)
         {
             StartCoroutine(DisablePlatform());
@@ -95,5 +90,18 @@ public class PlayerController : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, true);
     }
 
+    public void Damage(float amount)
+    {
+        if (health > 0)
+        {
+            health -= amount;
+            OnHealthChanged?.Invoke(health);
+        }
+    }
 
+    public void Heal(float amount)
+    {
+        health += amount;
+        OnHealthChanged?.Invoke(health);
+    }
 }
