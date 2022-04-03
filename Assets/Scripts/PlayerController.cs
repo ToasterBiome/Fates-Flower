@@ -69,17 +69,20 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             StartCoroutine(DoAttack());
         }
+
+        string nextAnimationState = "Idle";
+
+        if (!moving && isGrounded) nextAnimationState = "Idle";
+        if (moving && isGrounded) nextAnimationState = "Run";
+        if (!moving && !isGrounded) nextAnimationState = "Jump";
+        if (moving && !isGrounded) nextAnimationState = "Jump";
+
         if (attacking)
         {
-            SetAnimationState("Attack");
+            nextAnimationState += "_Attack";
         }
-        else
-        {
-            if (!moving && isGrounded) SetAnimationState("Idle");
-            if (moving && isGrounded) SetAnimationState("Run");
-            if (!moving && !isGrounded) SetAnimationState("Jump");
-            if (moving && !isGrounded) SetAnimationState("Jump");
-        }
+
+        SetAnimationState(nextAnimationState);
     }
 
     bool GroundCheck()
