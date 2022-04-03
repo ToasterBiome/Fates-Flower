@@ -232,14 +232,14 @@ Material:
     - _IridescenceThresholdOffset: 0
     - _Light: 2
     - _LightBands: 3
-    - _LightBandsScale: 0.232
-    - _LightThreshold: 0.585
+    - _LightBandsScale: 0.506
+    - _LightThreshold: 0.328
     - _LightTransmission: 0
     - _LightTransmissionDistortion: 0.25
     - _LightTransmissionIntensity: 1
     - _LightTransmissionSmoothness: 0.5
     - _LightTransmissionThresholdOffset: 0.25
-    - _Metallic: 0.339
+    - _Metallic: 0.872
     - _Mode: 0
     - _NormalMapIntensity: 1
     - _OcclusionMapIntensity: 1
@@ -264,7 +264,7 @@ Material:
     - _Roughness: 0.5
     - _Saturation: 1
     - _SketchMapScale: 1
-    - _Smoothness: 0.194
+    - _Smoothness: 0.396
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1

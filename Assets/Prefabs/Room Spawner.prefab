@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4861012482413115667}
   - component: {fileID: 3180968113778316578}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Room Spawner
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,3 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomTemplates:
   - {fileID: 5339228134980201652, guid: dd532dadc6fc0ea409613fc16889a1dd, type: 3}
+  - {fileID: 5008755673596317073, guid: e7390b0366eb2e14aa77a8d452da2c50, type: 3}
+  - {fileID: 1574196549788130942, guid: 78a172738664e29428fbc2d62e49482f, type: 3}
+  - {fileID: 4469273188799009940, guid: 76a9c3d290fffbc42b6bef6048c55393, type: 3}
+  - {fileID: 5169199066716541042, guid: 30cfdc5ace2f3964bae6d79ea0408004, type: 3}
+  - {fileID: 3374490228103693240, guid: 00dcf6dec7ff28f46a7146cbcac87801, type: 3}
