@@ -359,6 +359,8 @@ MonoBehaviour:
   isGrounded: 0
   animator: {fileID: 38975127}
   currentAnimState: 
+  attacking: 0
+  attackHitbox: {fileID: 222237637}
 --- !u!61 &207445318
 BoxCollider2D:
   m_ObjectHideFlags: 0

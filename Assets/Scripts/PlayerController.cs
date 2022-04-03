@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] Animator animator;
     [SerializeField] string currentAnimState;
 
+    [SerializeField] bool attacking = false;
+    [SerializeField] GameObject attackHitbox;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,10 +63,23 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             moving = true;
         }
-        if (!moving && isGrounded) SetAnimationState("Idle");
-        if (moving && isGrounded) SetAnimationState("Run");
-        if (!moving && !isGrounded) SetAnimationState("Jump");
-        if (moving && !isGrounded) SetAnimationState("Jump");
+
+
+        if (Input.GetMouseButtonDown(0) && !attacking)
+        {
+            StartCoroutine(DoAttack());
+        }
+        if (attacking)
+        {
+            SetAnimationState("Attack");
+        }
+        else
+        {
+            if (!moving && isGrounded) SetAnimationState("Idle");
+            if (moving && isGrounded) SetAnimationState("Run");
+            if (!moving && !isGrounded) SetAnimationState("Jump");
+            if (moving && !isGrounded) SetAnimationState("Jump");
+        }
     }
 
     bool GroundCheck()
@@ -102,6 +118,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, true);
     }
 
+    IEnumerator DoAttack()
+    {
+        attacking = true;
+        yield return new WaitForSeconds(0.33f);
+        attackHitbox.SetActive(true);
+        yield return new WaitForSeconds(0.165f);
+        attackHitbox.SetActive(false);
+        attacking = false;
+    }
+
     public void Damage(float amount)
     {
         if (health > 0)
@@ -119,10 +145,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void SetAnimationState(string newState)
     {
-        if (currentAnimState == newState)
-        {
-            return;
-        }
+        if (currentAnimState == newState) return;
         animator.Play(newState);
+        currentAnimState = newState;
     }
 }
