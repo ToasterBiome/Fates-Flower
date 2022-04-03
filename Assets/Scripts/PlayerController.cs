@@ -20,6 +20,12 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     GameObject platform;
 
+    [SerializeField] Animator animator;
+    [SerializeField] string currentAnimState;
+
+    [SerializeField] bool attacking = false;
+    [SerializeField] GameObject attackHitbox;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        IsGrounded();
+        GroundCheck();
         Vector2 velocity = rb.velocity;
         velocity.x = Input.GetAxisRaw("Horizontal") * 6f;
 
@@ -51,9 +57,32 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             StartCoroutine(DisablePlatform());
         }
+
+        bool moving = false;
+        if (velocity.x != 0)
+        {
+            moving = true;
+        }
+
+
+        if (Input.GetMouseButtonDown(0) && !attacking)
+        {
+            StartCoroutine(DoAttack());
+        }
+        if (attacking)
+        {
+            SetAnimationState("Attack");
+        }
+        else
+        {
+            if (!moving && isGrounded) SetAnimationState("Idle");
+            if (moving && isGrounded) SetAnimationState("Run");
+            if (!moving && !isGrounded) SetAnimationState("Jump");
+            if (moving && !isGrounded) SetAnimationState("Jump");
+        }
     }
 
-    bool IsGrounded()
+    bool GroundCheck()
     {
         RaycastHit2D raycast = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, 1 << LayerMask.NameToLayer("Ground"));
         if (raycast.collider == null)
@@ -61,7 +90,6 @@ public class PlayerController : MonoBehaviour, IDamageable
             isGrounded = false;
             return false;
         }
-        //Debug.Log(raycast.collider.name);
         isGrounded = true;
         return true;
     }
@@ -90,6 +118,16 @@ public class PlayerController : MonoBehaviour, IDamageable
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, true);
     }
 
+    IEnumerator DoAttack()
+    {
+        attacking = true;
+        yield return new WaitForSeconds(0.33f);
+        attackHitbox.SetActive(true);
+        yield return new WaitForSeconds(0.165f);
+        attackHitbox.SetActive(false);
+        attacking = false;
+    }
+
     public void Damage(float amount)
     {
         if (health > 0)
@@ -103,5 +141,12 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         health += amount;
         OnHealthChanged?.Invoke(health);
+    }
+
+    void SetAnimationState(string newState)
+    {
+        if (currentAnimState == newState) return;
+        animator.Play(newState);
+        currentAnimState = newState;
     }
 }
