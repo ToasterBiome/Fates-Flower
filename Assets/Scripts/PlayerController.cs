@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     GameObject platform;
 
+    [SerializeField] Animator animator;
+    [SerializeField] string currentAnimState;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        IsGrounded();
+        GroundCheck();
         Vector2 velocity = rb.velocity;
         velocity.x = Input.GetAxisRaw("Horizontal") * 6f;
 
@@ -51,9 +54,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             StartCoroutine(DisablePlatform());
         }
+
+        bool moving = false;
+        if (velocity.x != 0)
+        {
+            moving = true;
+        }
+        if (!moving && isGrounded) SetAnimationState("Idle");
+        if (moving && isGrounded) SetAnimationState("Run");
+        if (!moving && !isGrounded) SetAnimationState("Jump");
+        if (moving && !isGrounded) SetAnimationState("Jump");
     }
 
-    bool IsGrounded()
+    bool GroundCheck()
     {
         RaycastHit2D raycast = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, 1 << LayerMask.NameToLayer("Ground"));
         if (raycast.collider == null)
@@ -61,7 +74,6 @@ public class PlayerController : MonoBehaviour, IDamageable
             isGrounded = false;
             return false;
         }
-        //Debug.Log(raycast.collider.name);
         isGrounded = true;
         return true;
     }
@@ -103,5 +115,14 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         health += amount;
         OnHealthChanged?.Invoke(health);
+    }
+
+    void SetAnimationState(string newState)
+    {
+        if (currentAnimState == newState)
+        {
+            return;
+        }
+        animator.Play(newState);
     }
 }
