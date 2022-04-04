@@ -73,6 +73,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  destructionParticles: {fileID: 3575476993170951713, guid: 28dfd19f45cb1f14ba67125d6be10de7, type: 3}
+  particlesOffset: {x: 0, y: 0, z: -1}
 --- !u!1 &9193913736909310268
 GameObject:
   m_ObjectHideFlags: 0

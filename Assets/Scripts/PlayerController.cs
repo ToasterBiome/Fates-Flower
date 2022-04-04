@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     float health = 10f * 60f; //10 minutes seconds of HP
 
     public static Action<float> OnHealthChanged;
+    public static Action OnDeath;
 
     [SerializeField]
     Rigidbody2D rb;
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] bool inCooldown = false;
 
+    [SerializeField] bool dead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +45,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         GroundCheck();
         Vector2 velocity = rb.velocity;
-        velocity.x = Input.GetAxisRaw("Horizontal") * 6f;
+        if (!dead) velocity.x = Input.GetAxisRaw("Horizontal") * 6f;
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !dead)
         {
             velocity.y = 10.5f;
         }
@@ -70,7 +73,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
 
-        if (Input.GetMouseButtonDown(0) && !attacking)
+        if (Input.GetMouseButtonDown(0) && !attacking && !dead)
         {
             StartCoroutine(DoAttack());
         }
@@ -85,6 +88,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (attacking)
         {
             nextAnimationState += "_Attack" + (sprite.flipX == true ? "_L" : "_R");
+        }
+
+        if (dead)
+        {
+            nextAnimationState = "Death";
         }
 
         SetAnimationState(nextAnimationState);
@@ -157,6 +165,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void Damage(float amount, bool triggersCooldown)
     {
+        if (dead) return; //cant get deader bro!
         if (triggersCooldown && inCooldown)
         {
             return;
@@ -165,11 +174,19 @@ public class PlayerController : MonoBehaviour, IDamageable
         {
             StartCoroutine(DamageCooldown());
         }
-        if (health > 0)
+        health -= amount;
+        OnHealthChanged?.Invoke(health);
+        if (health <= 0)
         {
-            health -= amount;
-            OnHealthChanged?.Invoke(health);
+            Die();
         }
+    }
+
+    void Die()
+    {
+        dead = true;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        OnDeath?.Invoke();
     }
 
     public void Heal(float amount, bool triggersCooldown)
