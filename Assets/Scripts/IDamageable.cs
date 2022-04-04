@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void Damage(float amount);
-    void Heal(float amount);
+    void Damage(float amount, bool triggersCooldown);
+    void Heal(float amount, bool triggersCooldown);
 }

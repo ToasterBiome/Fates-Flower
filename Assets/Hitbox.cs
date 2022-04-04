@@ -23,6 +23,6 @@ public class Hitbox : MonoBehaviour
         {
             return;
         }
-        damageable.Damage(10f);
+        damageable.Damage(10f, true);
     }
 }

@@ -6,7 +6,7 @@ public class PropDamagable : MonoBehaviour, IDamageable
 {
     [SerializeField] float health;
 
-    public void Damage(float amount)
+    public void Damage(float amount, bool triggersCooldown)
     {
         health -= amount;
         if (health <= 0)
@@ -15,5 +15,5 @@ public class PropDamagable : MonoBehaviour, IDamageable
         }
     }
 
-    public void Heal(float amount) { }
+    public void Heal(float amount, bool triggersCooldown) { }
 }

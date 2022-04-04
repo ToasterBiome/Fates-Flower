@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] Coroutine platformCoroutine;
 
+    [SerializeField] bool inCooldown = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            velocity.y = 10;
+            velocity.y = 10.5f;
         }
         velocity.y += Physics2D.gravity.y * Time.deltaTime;
         //velocity.y = Mathf.Min(Physics2D.gravity.y, velocity.y);
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             sprite.flipX = Mathf.Sign(velocity.x) == 1 ? false : true;
         }
 
-        Damage(Time.deltaTime);
+        Damage(Time.deltaTime, false);
         if (Input.GetKeyDown(KeyCode.S) && platform != null && platformCoroutine == null)
         {
             platformCoroutine = StartCoroutine(DisablePlatform());
@@ -144,8 +146,25 @@ public class PlayerController : MonoBehaviour, IDamageable
         attacking = false;
     }
 
-    public void Damage(float amount)
+    IEnumerator DamageCooldown()
     {
+        inCooldown = true;
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(1);
+        sprite.color = Color.white;
+        inCooldown = false;
+    }
+
+    public void Damage(float amount, bool triggersCooldown)
+    {
+        if (triggersCooldown && inCooldown)
+        {
+            return;
+        }
+        else if (triggersCooldown)
+        {
+            StartCoroutine(DamageCooldown());
+        }
         if (health > 0)
         {
             health -= amount;
@@ -153,7 +172,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
     }
 
-    public void Heal(float amount)
+    public void Heal(float amount, bool triggersCooldown)
     {
         health += amount;
         OnHealthChanged?.Invoke(health);
