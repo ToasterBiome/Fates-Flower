@@ -39,7 +39,8 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        fade.alpha = 1f;
+        LeanTween.alphaCanvas(fade, 0, 1f);
     }
 
     // Update is called once per frame

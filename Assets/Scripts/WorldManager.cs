@@ -10,6 +10,8 @@ public class WorldManager : MonoBehaviour
     public Transform player;
     public GameObject currentCamera;
     public Room currentRoom;
+
+    public bool key = false;
     void Awake()
     {
         if (instance == null)
