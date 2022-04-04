@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public AudioSource enemySpawn;
+    public AudioSource enemyDeath;
+
+
     [SerializeField]
     float health = 20;
 
@@ -66,6 +70,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Spawn()
     {
         StartCoroutine(SpawnCoroutine());
+        AudioSource.PlayClipAtPoint(enemySpawn.clip, transform.position, 2f);
     }
 
     IEnumerator SpawnCoroutine()
@@ -118,6 +123,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         dying = true;
         Destroy(gameObject, 1f);
+        AudioSource.PlayClipAtPoint(enemyDeath.clip, transform.position, 2f);
     }
 
 

@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamageable
 {
+    public AudioSource playerJump;
+    public AudioSource playerSwing;
+    public AudioSource playerHit;
+    public AudioSource playerWalk;
+    public AudioSource playerDamage;
+
     [SerializeField]
     float health = 10f * 60f; //10 minutes seconds of HP
 
@@ -72,12 +78,14 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (velocity.x != 0)
         {
             moving = true;
+
         }
 
 
         if (Input.GetMouseButtonDown(0) && !attacking && !dead)
         {
             StartCoroutine(DoAttack());
+            AudioSource.PlayClipAtPoint(playerSwing.clip, transform.position, 2f);
         }
 
         string nextAnimationState = "Idle";
@@ -86,7 +94,6 @@ public class PlayerController : MonoBehaviour, IDamageable
         if (moving && isGrounded) nextAnimationState = "Run";
         if (!moving && !isGrounded) nextAnimationState = "Jump";
         if (moving && !isGrounded) nextAnimationState = "Jump";
-
         if (attacking)
         {
             nextAnimationState += "_Attack" + (sprite.flipX == true ? "_L" : "_R");
@@ -148,6 +155,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else
         {
             attackHitboxL.SetActive(true);
+
         }
 
         yield return new WaitForSeconds(0.165f);
@@ -175,9 +183,11 @@ public class PlayerController : MonoBehaviour, IDamageable
         else if (triggersCooldown)
         {
             StartCoroutine(DamageCooldown());
+            AudioSource.PlayClipAtPoint(playerDamage.clip, transform.position, 2f);
             OnDamage?.Invoke();
         }
         health -= amount;
+        
         OnHealthChanged?.Invoke(health);
         if (health <= 0)
         {

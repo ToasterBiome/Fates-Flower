@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour
 {
+    public AudioSource collectSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class Flower : MonoBehaviour
         {
             PlayerController player = collider.GetComponent<PlayerController>();
             player.Heal(60, false); //1 minute yippoe!!!
+            AudioSource.PlayClipAtPoint(collectSound.clip, transform.position, 2f);
             Destroy(gameObject);
         }
     }
