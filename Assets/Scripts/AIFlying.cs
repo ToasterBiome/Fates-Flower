@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIFlying : AI
 {
+    [SerializeField]
     Transform target;
     // Start is called before the first frame update
     protected override void Start()
@@ -17,8 +18,16 @@ public class AIFlying : AI
     {
         if (activated && target != null)
         {
-            Vector2 direction = target.position - transform.position;
-            rb.velocity = direction.normalized;
+            Vector2 targetDirection = target.position - transform.position;
+            rb.velocity = targetDirection.normalized;
+            if (targetDirection.x > 0 && direction < 0 || targetDirection.x < 0 && direction > 0)
+            {
+                flip = true;
+            }
+            if (flip)
+            {
+                Flip();
+            }
         }
     }
 }

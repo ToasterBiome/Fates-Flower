@@ -10,6 +10,9 @@ public class Room : MonoBehaviour
     [SerializeField] List<GameObject> enemies;
 
     [SerializeField] bool roomCleared = false;
+
+    [SerializeField] GameObject flower;
+    [SerializeField] bool rewardFlower = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +99,10 @@ public class Room : MonoBehaviour
         foreach (GameObject door in doors)
         {
             door.SetActive(false);
+        }
+        if (rewardFlower)
+        {
+            flower.SetActive(true);
         }
     }
     void OnTriggerExit2D(Collider2D col)
