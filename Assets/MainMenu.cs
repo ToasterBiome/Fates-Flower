@@ -18,9 +18,10 @@ public class MainMenu : MonoBehaviour
     {
         startButton.onClick.AddListener(() =>
         {
+            LeanTween.cancelAll();
             LeanTween.alphaCanvas(fade, 1f, 1f).setOnComplete(() =>
             {
-                SceneManager.LoadScene("EndingScene");
+                SceneManager.LoadScene("MainScene");
             });
         });
         creditsButton.onClick.AddListener(() =>
