@@ -39,7 +39,6 @@ public class Room : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Triggered");
         if (col.tag == "Player")
         {
             if (WorldManager.instance.currentCamera != null)

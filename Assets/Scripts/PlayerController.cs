@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour, IDamageable
     [SerializeField] string currentAnimState;
 
     [SerializeField] bool attacking = false;
-    [SerializeField] GameObject attackHitbox;
+    [SerializeField] GameObject attackHitboxR;
+    [SerializeField] GameObject attackHitboxL;
+
+    [SerializeField] Coroutine platformCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +56,9 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         Damage(Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.S) && platform != null)
+        if (Input.GetKeyDown(KeyCode.S) && platform != null && platformCoroutine == null)
         {
-            StartCoroutine(DisablePlatform());
+            platformCoroutine = StartCoroutine(DisablePlatform());
         }
 
         bool moving = false;
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
         if (attacking)
         {
-            nextAnimationState += "_Attack";
+            nextAnimationState += "_Attack" + (sprite.flipX == true ? "_L" : "_R");
         }
 
         SetAnimationState(nextAnimationState);
@@ -118,16 +121,26 @@ public class PlayerController : MonoBehaviour, IDamageable
         BoxCollider2D platformCollider = platform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider);
         yield return new WaitForSeconds(0.5f);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, true);
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, false);
+        platformCoroutine = null;
     }
 
     IEnumerator DoAttack()
     {
         attacking = true;
         yield return new WaitForSeconds(0.33f);
-        attackHitbox.SetActive(true);
+        if (!sprite.flipX)
+        {
+            attackHitboxR.SetActive(true);
+        }
+        else
+        {
+            attackHitboxL.SetActive(true);
+        }
+
         yield return new WaitForSeconds(0.165f);
-        attackHitbox.SetActive(false);
+        attackHitboxR.SetActive(false);
+        attackHitboxL.SetActive(false);
         attacking = false;
     }
 

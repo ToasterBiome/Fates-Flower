@@ -18,7 +18,6 @@ public class Hitbox : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.name);
         IDamageable damageable = collider.GetComponent<IDamageable>();
         if (damageable == null)
         {
