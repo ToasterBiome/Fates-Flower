@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
         {
             LeanTween.alphaCanvas(fade, 1f, 1f).setOnComplete(() =>
             {
-                SceneManager.LoadScene("MainScene");
+                SceneManager.LoadScene("EndingScene");
             });
         });
         creditsButton.onClick.AddListener(() =>

@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public static Action<float> OnHealthChanged;
     public static Action OnDeath;
+    public static Action OnDamage;
+    public static Action OnHeal;
 
     [SerializeField]
     Rigidbody2D rb;
@@ -173,6 +175,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         else if (triggersCooldown)
         {
             StartCoroutine(DamageCooldown());
+            OnDamage?.Invoke();
         }
         health -= amount;
         OnHealthChanged?.Invoke(health);
@@ -193,6 +196,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     {
         health += amount;
         OnHealthChanged?.Invoke(health);
+        OnHeal?.Invoke();
     }
 
     void SetAnimationState(string newState)

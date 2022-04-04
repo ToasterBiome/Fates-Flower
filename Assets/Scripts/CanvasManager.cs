@@ -14,18 +14,34 @@ public class CanvasManager : MonoBehaviour
     {
         PlayerController.OnHealthChanged += OnHealthChanged;
         PlayerController.OnDeath += OnDeath;
+        PlayerController.OnDamage += OnDamage;
+        PlayerController.OnHeal += OnHeal;
     }
 
     void OnDisable()
     {
         PlayerController.OnHealthChanged -= OnHealthChanged;
         PlayerController.OnDeath -= OnDeath;
+        PlayerController.OnDamage -= OnDamage;
+        PlayerController.OnHeal -= OnHeal;
     }
 
     void OnHealthChanged(float health)
     {
         TimeSpan ts = TimeSpan.FromSeconds(health);
         healthText.SetText(string.Format("{0:00}:{1:00}", (int)ts.TotalMinutes, (int)ts.Seconds));
+    }
+
+    void OnDamage()
+    {
+        //healthText.color = Color.red;
+        //LeanTween.textColor(healthText.rectTransform, Color.white, 1f);
+    }
+
+    void OnHeal()
+    {
+        //healthText.color = Color.green;
+        //LeanTween.textColor(healthText.rectTransform, Color.white, 1f);
     }
 
     void OnDeath()

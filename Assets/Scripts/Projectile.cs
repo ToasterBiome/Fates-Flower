@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
     {
         if (collider.tag == "Enemy") return;
         if (collider.tag == "Platform") return;
+        if (collider.tag == "Untagged") return;
         if (collider.tag == "Player")
         {
             IDamageable damageable = collider.GetComponent<IDamageable>();
