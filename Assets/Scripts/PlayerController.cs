@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     [SerializeField] bool isGrounded = false;
 
-    GameObject platform;
+    [SerializeField] GameObject platform;
 
     [SerializeField] Animator animator;
     [SerializeField] string currentAnimState;
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         }
 
         Damage(Time.deltaTime, false);
-        if (Input.GetKeyDown(KeyCode.S) && platform != null && platformCoroutine == null)
+        if (Input.GetKey(KeyCode.S) && platform != null && platformCoroutine == null)
         {
             platformCoroutine = StartCoroutine(DisablePlatform());
         }
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform" && collision.gameObject == platform)
         {
             platform = null;
         }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7036305414796758861}
   m_Layer: 7
   m_Name: Random Room 12
-  m_TagString: Platform
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
