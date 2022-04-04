@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawn: {fileID: 860349218739463415}
-  enemyDeath: {fileID: 0}
+  enemyDeath: {fileID: 860349218739463415}
   health: 20
   animator: {fileID: 7878088186908778833}
   currentAnimState: 
