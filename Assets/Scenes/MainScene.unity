@@ -449,10 +449,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 894e78abac4a4e046ac6c1e800dfe8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 600
+  health: 300
   rb: {fileID: 0}
   sprite: {fileID: 38975126}
   isGrounded: 0
+  platform: {fileID: 0}
   animator: {fileID: 38975127}
   currentAnimState: 
   attacking: 0
