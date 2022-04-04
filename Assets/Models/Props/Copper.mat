@@ -232,8 +232,8 @@ Material:
     - _IridescenceThresholdOffset: 0
     - _Light: 2
     - _LightBands: 3
-    - _LightBandsScale: 0.506
-    - _LightThreshold: 0.328
+    - _LightBandsScale: 0.08
+    - _LightThreshold: 0.5
     - _LightTransmission: 0
     - _LightTransmissionDistortion: 0.25
     - _LightTransmissionIntensity: 1
@@ -293,7 +293,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.459885, g: 0.19172224, b: 0.05821217, a: 1}
+    - _AlbedoColor: {r: 0.41509432, g: 0.30089697, b: 0.13079385, a: 1}
     - _BaseColor: {r: 0.45988506, g: 0.19172227, b: 0.05821219, a: 1}
     - _Color: {r: 0.17877175, g: 0.030584, b: 0.0047156103, a: 1}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
