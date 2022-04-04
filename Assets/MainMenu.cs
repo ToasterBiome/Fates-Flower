@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         fade.alpha = 1f;
-        LeanTween.alphaCanvas(fade, 1f, 1f);
+        LeanTween.alphaCanvas(fade, 0f, 1f);
     }
 
     // Update is called once per frame
