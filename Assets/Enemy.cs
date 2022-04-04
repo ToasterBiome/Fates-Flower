@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,10 +15,13 @@ public class Enemy : MonoBehaviour, IDamageable
     [SerializeField] string currentAnimState;
 
     [SerializeField] bool dying = false;
+    [SerializeField] bool spawning = false;
 
     [SerializeField] bool inCooldown = false;
 
     [SerializeField] SpriteRenderer sprite;
+
+    public Action<GameObject> OnDeath;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,11 @@ public class Enemy : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if (spawning)
+        {
+            SetAnimationState("Spawn");
+            return;
+        }
         if (!dying)
         {
             SetAnimationState("Walk");
@@ -53,6 +62,25 @@ public class Enemy : MonoBehaviour, IDamageable
             player.Damage(15f, true);
         }
     }
+
+    public void Spawn()
+    {
+        StartCoroutine(SpawnCoroutine());
+    }
+
+    IEnumerator SpawnCoroutine()
+    {
+        spawning = true;
+        yield return new WaitForSeconds(1);
+        spawning = false;
+        AI ai = GetComponent<AI>();
+        if (ai != null)
+        {
+            ai.activated = true;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
+    }
+
     IEnumerator DamageCooldown()
     {
         inCooldown = true;
@@ -81,10 +109,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Die()
     {
-        AIPatrol patrol = GetComponent<AIPatrol>();
-        if (patrol != null)
+        OnDeath?.Invoke(gameObject);
+        AI ai = GetComponent<AI>();
+        if (ai != null)
         {
-            patrol.partrolling = false;
+            ai.activated = false;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
         dying = true;

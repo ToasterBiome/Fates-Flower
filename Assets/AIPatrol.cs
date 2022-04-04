@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIPatrol : MonoBehaviour
+public class AIPatrol : AI
 {
-    [SerializeField]
-    Rigidbody2D rb;
 
     [SerializeField]
     float direction = -4f;
@@ -18,17 +16,10 @@ public class AIPatrol : MonoBehaviour
 
     bool flip = true;
 
-    public bool partrolling = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (!partrolling) return;
+        if (!activated) return;
         rb.velocity = new Vector2(direction * Time.deltaTime, rb.velocity.y + Physics2D.gravity.y * Time.deltaTime);
         if (flip)
         {

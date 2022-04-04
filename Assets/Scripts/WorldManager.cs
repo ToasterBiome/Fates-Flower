@@ -7,7 +7,7 @@ public class WorldManager : MonoBehaviour
     public static WorldManager instance;
 
     [SerializeField]
-    Transform player;
+    public Transform player;
     public GameObject currentCamera;
     public Room currentRoom;
     void Awake()

@@ -59,6 +59,17 @@ public class Room : MonoBehaviour
             }
             OnRoomEntered(col.gameObject, -difference);
         }
+        if (col.tag == "Enemy")
+        {
+            enemies.Add(col.gameObject);
+            col.GetComponent<Enemy>().OnDeath += OnDeath;
+        }
+    }
+
+    void OnDeath(GameObject enemy)
+    {
+        enemy.GetComponent<Enemy>().OnDeath -= OnDeath;
+        enemies.Remove(enemy);
     }
 
     void OnRoomEntered(GameObject player, Vector2 directionEntered)
@@ -73,6 +84,10 @@ public class Room : MonoBehaviour
         }
         player.transform.position = (Vector2)transform.position + directionEntered * 5f;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().Spawn();
+        }
     }
 
     void OnRoomCleared()
