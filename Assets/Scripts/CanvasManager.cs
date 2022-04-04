@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
@@ -10,12 +11,20 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] CanvasGroup fade;
     [SerializeField] CanvasGroup deathText;
+    [SerializeField] Button returnButton;
     void OnEnable()
     {
         PlayerController.OnHealthChanged += OnHealthChanged;
         PlayerController.OnDeath += OnDeath;
         PlayerController.OnDamage += OnDamage;
         PlayerController.OnHeal += OnHeal;
+        returnButton.onClick.AddListener(() =>
+        {
+            LeanTween.alphaCanvas(fade, 1f, 1f).setOnComplete(() =>
+            {
+                SceneManager.LoadScene("MainMenu");
+            });
+        });
     }
 
     void OnDisable()
@@ -48,7 +57,10 @@ public class CanvasManager : MonoBehaviour
     {
         LeanTween.alphaCanvas(fade, 1f, 4f).setDelay(4f).setOnComplete(() =>
         {
-            LeanTween.alphaCanvas(deathText, 1f, 1f).setDelay(1f);
+            LeanTween.alphaCanvas(deathText, 1f, 1f).setDelay(1f).setOnComplete(() =>
+            {
+                returnButton.gameObject.SetActive(true);
+            });
         });
     }
 
