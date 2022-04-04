@@ -18,6 +18,7 @@ public class CanvasManager : MonoBehaviour
         PlayerController.OnDeath += OnDeath;
         PlayerController.OnDamage += OnDamage;
         PlayerController.OnHeal += OnHeal;
+        EndingDoor.OnGameComplete += OnGameComplete;
         returnButton.onClick.AddListener(() =>
         {
             LeanTween.alphaCanvas(fade, 1f, 1f).setOnComplete(() =>
@@ -33,6 +34,7 @@ public class CanvasManager : MonoBehaviour
         PlayerController.OnDeath -= OnDeath;
         PlayerController.OnDamage -= OnDamage;
         PlayerController.OnHeal -= OnHeal;
+        EndingDoor.OnGameComplete -= OnGameComplete;
     }
 
     void OnHealthChanged(float health)
@@ -51,6 +53,14 @@ public class CanvasManager : MonoBehaviour
     {
         //healthText.color = Color.green;
         //LeanTween.textColor(healthText.rectTransform, Color.white, 1f);
+    }
+
+    void OnGameComplete()
+    {
+        LeanTween.alphaCanvas(fade, 1f, 1f).setOnComplete(() =>
+        {
+            SceneManager.LoadScene("EndingScene");
+        });
     }
 
     void OnDeath()
