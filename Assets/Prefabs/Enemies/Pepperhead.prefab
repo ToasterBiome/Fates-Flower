@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4561936239078313715}
   - component: {fileID: 4561936239078313724}
   - component: {fileID: 2396847138101072703}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pepperhead
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4561936239345913287}
   - component: {fileID: 4561936239345913286}
   - component: {fileID: 4561936239345913285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1808788239858102579}
   - component: {fileID: 1808788239858102578}
   - component: {fileID: 1808788239858102577}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 1808788240126849548}
   - component: {fileID: 1808788240126849543}
   - component: {fileID: 1808788240126849544}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shackled
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -200,11 +200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a86d6584ee90864d84fb64c65c551f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  activated: 0
+  flip: 1
   direction: -60
   groundChecker: {fileID: 1808788240432054375}
   wallChecker: {fileID: 1808788240164795903}
-  partrolling: 0
 --- !u!114 &1808788240126849543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1808788240164795903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WallChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1808788240432054375}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

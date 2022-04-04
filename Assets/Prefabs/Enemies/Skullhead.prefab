@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7878088186908778835}
   - component: {fileID: 7878088186908778834}
   - component: {fileID: 7878088186908778833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 7878088187177427559}
   - component: {fileID: 7878088187177427564}
   - component: {fileID: 7878088187177427560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skullhead
   m_TagString: Enemy
   m_Icon: {fileID: 0}
