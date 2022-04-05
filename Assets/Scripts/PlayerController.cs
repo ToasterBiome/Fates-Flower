@@ -142,9 +142,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     IEnumerator DisablePlatform()
     {
         EdgeCollider2D platformCollider = platform.GetComponent<EdgeCollider2D>();
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider);
+        Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), platformCollider);
         yield return new WaitForSeconds(0.5f);
-        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, false);
+        Physics2D.IgnoreCollision(GetComponent<CapsuleCollider2D>(), platformCollider, false);
         platformCoroutine = null;
     }
 
@@ -191,7 +191,7 @@ public class PlayerController : MonoBehaviour, IDamageable
             OnDamage?.Invoke();
         }
         health -= amount;
-        
+
         OnHealthChanged?.Invoke(health);
         if (health <= 0)
         {
