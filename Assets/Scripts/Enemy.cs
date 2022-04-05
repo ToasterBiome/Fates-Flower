@@ -109,6 +109,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Die()
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         OnDeath?.Invoke(gameObject);
         AI ai = GetComponent<AI>();
         if (ai != null)

@@ -28,6 +28,10 @@ public class AIPatrol : AI
         {
             flip = true;
         }
+        if (Physics2D.OverlapCircle(groundChecker.position, 0.1f, 1 << LayerMask.NameToLayer("Platform")))
+        {
+            flip = true;
+        }
         if (Physics2D.OverlapCircle(wallChecker.position, 0.1f, 1 << LayerMask.NameToLayer("Ground")))
         {
             flip = true;

@@ -102,14 +102,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     bool GroundCheck()
     {
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, 1 << LayerMask.NameToLayer("Ground"));
-        if (raycast.collider == null)
+        RaycastHit2D leftRaycast = Physics2D.Raycast(transform.position - new Vector3(0.25f, 0), Vector2.down, 1.5f, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D middleRaycast = Physics2D.Raycast(transform.position, Vector2.down, 1.5f, 1 << LayerMask.NameToLayer("Ground"));
+        RaycastHit2D rightRaycast = Physics2D.Raycast(transform.position + new Vector3(0.25f, 0), Vector2.down, 1.5f, 1 << LayerMask.NameToLayer("Ground"));
+        if (leftRaycast.collider == null && middleRaycast.collider == null && rightRaycast.collider == null)
         {
             isGrounded = false;
-            return false;
         }
-        isGrounded = true;
-        return true;
+        else
+        {
+            isGrounded = true;
+        }
+        return isGrounded;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -130,7 +134,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     IEnumerator DisablePlatform()
     {
-        BoxCollider2D platformCollider = platform.GetComponent<BoxCollider2D>();
+        EdgeCollider2D platformCollider = platform.GetComponent<EdgeCollider2D>();
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider);
         yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), platformCollider, false);
