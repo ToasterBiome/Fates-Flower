@@ -423,8 +423,6 @@ AudioSource:
     m_RotationOrder: 4
 --- !u!70 &8737614265276139453
 CapsuleCollider2D:
---- !u!82 &812569925802207916
-AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -439,6 +437,14 @@ AudioSource:
   m_Offset: {x: 0.25, y: -0.25}
   m_Size: {x: 0.5, y: 1.5}
   m_Direction: 0
+--- !u!82 &812569925802207916
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1808788240126849549}
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a497a5d7d37efea43b8d9858270f7bdc, type: 3}
